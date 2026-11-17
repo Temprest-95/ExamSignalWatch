@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootScroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F5F7F9"
+    android:clipToPadding="false">
+    <LinearLayout
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="28dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="시험 감독 보조 도구  ·  오프라인"
+            android:textColor="#5A7178"
+            android:textSize="12sp"
+            android:letterSpacing="0.08" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="무선 신호 관측기"
+            android:textStyle="bold"
+            android:textColor="#142D33"
+            android:textSize="27sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="관측된 전파를 기록합니다. 전자기기의 존재나 부정행위를 판정하지 않습니다."
+            android:textColor="#61767C"
+            android:textSize="13sp"
+            android:lineSpacingExtra="2dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/card"
+            android:padding="17dp"
+            android:orientation="vertical">
+            <TextView
+                android:text="검사 상태"
+                android:textSize="12sp"
+                android:textColor="#5E7479"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/status"
+                android:text="대기 중"
+                android:textStyle="bold"
+                android:textSize="23sp"
+                android:textColor="#145E66"
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/elapsed"
+                android:text="아직 검사를 시작하지 않았습니다"
+                android:textSize="12sp"
+                android:textColor="#698087"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginTop="14dp" android:layout_marginBottom="14dp" android:background="#E7ECEF" />
+            <TextView android:id="@+id/bleStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="블루투스 · 확인 중" android:textSize="13sp" android:textColor="#223A41" />
+            <TextView android:id="@+id/wifiStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="와이파이 · 확인 중" android:layout_marginTop="8dp" android:textSize="13sp" android:textColor="#223A41" />
+            <TextView android:id="@+id/sdrStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="RTL-SDR · 수신 기능 미구현 (예정)" android:layout_marginTop="8dp" android:textSize="13sp" android:textColor="#856838" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:orientation="horizontal">
+            <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:background="@drawable/card" android:padding="15dp" android:orientation="vertical">
+                <TextView android:text="BLE 기기 신호" android:textSize="12sp" android:textColor="#60767E" android:layout_width="match_parent" android:layout_height="wrap_content" />
+                <TextView android:id="@+id/bleCount" android:text="0" android:textSize="29sp" android:textStyle="bold" android:textColor="#15343A" android:layout_marginTop="4dp" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            </LinearLayout>
+            <Space android:layout_width="11dp" android:layout_height="1dp" />
+            <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:background="@drawable/card" android:padding="15dp" android:orientation="vertical">
+                <TextView android:text="와이파이 접속점" android:textSize="12sp" android:textColor="#60767E" android:layout_width="match_parent" android:layout_height="wrap_content" />
+                <TextView android:id="@+id/wifiCount" android:text="0" android:textSize="29sp" android:textStyle="bold" android:textColor="#15343A" android:layout_marginTop="4dp" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="13dp" android:orientation="vertical"
+            android:padding="17dp" android:background="@drawable/card">
+            <TextView android:text="검사 중 새로운 관측" android:textColor="#5F757B" android:textSize="12sp" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            <TextView android:id="@+id/newCount" android:text="0건" android:textColor="#145E66" android:textSize="22sp" android:textStyle="bold" android:layout_marginTop="5dp" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            <TextView android:id="@+id/lastScan" android:text="검사별 최근 갱신 시각이 표시됩니다" android:textColor="#6B7E84" android:textSize="11sp" android:layout_marginTop="7dp" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="21dp" android:text="최근 관측 신호" android:textStyle="bold" android:textColor="#172F35" android:textSize="17sp" />
+        <LinearLayout
+            android:id="@+id/signalList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="12dp"
+            android:background="@drawable/card"
+            android:orientation="vertical" />
+
+        <Button android:id="@+id/startStop" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="20dp" android:background="@drawable/action_primary" android:text="검사 시작" android:textAllCaps="false" android:textStyle="bold" android:textSize="16sp" android:textColor="#FFFFFF" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:orientation="horizontal">
+            <Button android:id="@+id/historyButton" android:layout_width="0dp" android:layout_weight="1" android:layout_height="49dp" android:background="@drawable/action_secondary" android:text="기록·내보내기" android:textAllCaps="false" android:textSize="13sp" android:textColor="#16474D" />
+            <Space android:layout_width="9dp" android:layout_height="1dp" />
+            <Button android:id="@+id/helpButton" android:layout_width="0dp" android:layout_weight="1" android:layout_height="49dp" android:background="@drawable/action_secondary" android:text="사용설명서" android:textAllCaps="false" android:textSize="13sp" android:textColor="#16474D" />
+        </LinearLayout>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="15dp" android:gravity="center" android:text="시험기관 공식 장비 아님 · 통신 내용 수집 없음 · v0.1.0" android:textColor="#819299" android:textSize="10sp" />
+    </LinearLayout>
+</ScrollView>
