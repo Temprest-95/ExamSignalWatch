@@ -9,7 +9,9 @@ data class SignalReading(
     val displayName: String,
     val rssiDbm: Int,
     val frequencyMhz: Int? = null,
-    val observedAtMillis: Long = System.currentTimeMillis()
+    val observedAtMillis: Long = System.currentTimeMillis(),
+    val metadata: String = "",
+    val wifiFreshRound: Long = 0L
 )
 
 data class ObservedSignal(
@@ -22,5 +24,23 @@ data class ObservedSignal(
     var count: Int,
     var frequencyMhz: Int?,
     val discoveredDuringExam: Boolean,
-    var lastPersistMillis: Long = 0L
-)
+    var lastPersistMillis: Long = 0L,
+    var inferredCategory: DeviceCategory = DeviceCategory.UNKNOWN,
+    var guessedType: String = "종류 확인 불가",
+    var classificationEvidence: String = "",
+    var classificationConfidence: String = "판별 불가",
+    var manualCategory: DeviceCategory? = null,
+    var reviewed: Boolean = false,
+    var metadata: String = "",
+    var baselineWifiRounds: Int = 0,
+    var autoMuted: Boolean = false,
+    var manualAttention: Boolean = false,
+    var examWindows: Int = 0,
+    var lastExamWindow: Long = -1L,
+    var lastWifiBaselineRound: Long = -1L,
+    var lastExamWifiRound: Long = -1L
+) {
+    val category: DeviceCategory get() = manualCategory ?: inferredCategory
+    val recurringInExam: Boolean get() = ExamSignalPolicy.isRepeatedDuringExam(kind, examWindows)
+    val needsAttention: Boolean get() = ExamSignalPolicy.needsAttention(this)
+}

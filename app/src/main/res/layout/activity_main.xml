@@ -75,6 +75,8 @@
             <TextView android:id="@+id/sdrStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="RTL-SDR · 수신 기능 미구현 (예정)" android:layout_marginTop="8dp" android:textSize="13sp" android:textColor="#856838" />
         </LinearLayout>
 
+        <Button android:id="@+id/startStop" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="20dp" android:background="@drawable/action_primary" android:text="시험 전 기준 신호 수집" android:textAllCaps="false" android:textStyle="bold" android:textSize="16sp" android:textColor="#FFFFFF" />
+        <Button android:id="@+id/abortSession" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginTop="8dp" android:background="@drawable/action_secondary" android:text="시험 전 검사 종료" android:visibility="gone" android:textAllCaps="false" android:textSize="13sp" android:textColor="#16474D" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -94,12 +96,38 @@
             android:layout_width="match_parent" android:layout_height="wrap_content"
             android:layout_marginTop="13dp" android:orientation="vertical"
             android:padding="17dp" android:background="@drawable/card">
-            <TextView android:text="검사 중 새로운 관측" android:textColor="#5F757B" android:textSize="12sp" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            <TextView android:text="시험 시작 후 신규 관측" android:textColor="#5F757B" android:textSize="12sp" android:layout_width="match_parent" android:layout_height="wrap_content" />
             <TextView android:id="@+id/newCount" android:text="0건" android:textColor="#145E66" android:textSize="22sp" android:textStyle="bold" android:layout_marginTop="5dp" android:layout_width="match_parent" android:layout_height="wrap_content" />
             <TextView android:id="@+id/lastScan" android:text="검사별 최근 갱신 시각이 표시됩니다" android:textColor="#6B7E84" android:textSize="11sp" android:layout_marginTop="7dp" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginTop="13dp" android:background="#E7ECEF" />
+            <TextView android:id="@+id/alertBanner" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="기준 신호를 수집한 후 시험을 시작하세요" android:textStyle="bold" android:textColor="#526B72" android:textSize="13sp" android:layout_marginTop="11dp" android:lineSpacingExtra="3dp" />
+            <TextView android:id="@+id/autoMuteSummary" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="기준 수집으로 확인한 접속점은 알림에서 접어 둡니다" android:textColor="#526B72" android:textSize="12sp" android:layout_marginTop="7dp" android:lineSpacingExtra="2dp" />
         </LinearLayout>
 
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="21dp" android:text="최근 관측 신호" android:textStyle="bold" android:textColor="#172F35" android:textSize="17sp" />
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="13dp" android:orientation="vertical"
+            android:background="@drawable/card" android:padding="16dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="기기 종류별 자동 분류 (추정)" android:textColor="#223B41"
+                android:textStyle="bold" android:textSize="16sp" />
+            <TextView android:id="@+id/categorySummary" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="의심 기기 0 · 스마트폰 0 · 일반 가전 0 · 분류 불명 0"
+                android:textColor="#445F65" android:layout_marginTop="8dp" android:textSize="14sp" />
+            <TextView android:id="@+id/reviewSummary" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="확인 완료 0 / 0 · 자동 분류는 이름 기반 추정"
+                android:textColor="#667D83" android:layout_marginTop="7dp" android:textSize="12sp" />
+        </LinearLayout>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="18dp" android:text="관측 항목별 확인" android:textStyle="bold"
+            android:textColor="#172F35" android:textSize="18sp" />
+        <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="11dp" android:fillViewport="true"
+            android:scrollbars="none">
+            <LinearLayout android:id="@+id/filterButtons" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:orientation="horizontal" />
+        </HorizontalScrollView>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="21dp" android:text="개별 관측 목록" android:textStyle="bold" android:textColor="#172F35" android:textSize="17sp" />
         <LinearLayout
             android:id="@+id/signalList"
             android:layout_width="match_parent"
@@ -109,12 +137,11 @@
             android:background="@drawable/card"
             android:orientation="vertical" />
 
-        <Button android:id="@+id/startStop" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="20dp" android:background="@drawable/action_primary" android:text="검사 시작" android:textAllCaps="false" android:textStyle="bold" android:textSize="16sp" android:textColor="#FFFFFF" />
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:orientation="horizontal">
             <Button android:id="@+id/historyButton" android:layout_width="0dp" android:layout_weight="1" android:layout_height="49dp" android:background="@drawable/action_secondary" android:text="기록·내보내기" android:textAllCaps="false" android:textSize="13sp" android:textColor="#16474D" />
             <Space android:layout_width="9dp" android:layout_height="1dp" />
             <Button android:id="@+id/helpButton" android:layout_width="0dp" android:layout_weight="1" android:layout_height="49dp" android:background="@drawable/action_secondary" android:text="사용설명서" android:textAllCaps="false" android:textSize="13sp" android:textColor="#16474D" />
         </LinearLayout>
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="15dp" android:gravity="center" android:text="시험기관 공식 장비 아님 · 통신 내용 수집 없음 · v0.1.0" android:textColor="#819299" android:textSize="10sp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="15dp" android:gravity="center" android:text="시험기관 공식 장비 아님 · 통신 내용 수집 없음 · v0.3.0" android:textColor="#819299" android:textSize="10sp" />
     </LinearLayout>
 </ScrollView>
